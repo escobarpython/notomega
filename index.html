@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINTA</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: Helvetica
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.ibb.co/60y43TN/NOTOMEGA.png" alt="wait to see">
+
+    <div id="countdown"></div>
+
+    <script>
+        // Define a data e hora do evento (15 de dezembro às 19h)
+        const targetDate = new Date('December 15, 2023 19:00:00').getTime();
+
+        // Atualiza o cronômetro a cada segundo
+        const countdownInterval = setInterval(function() {
+            const currentDate = new Date().getTime();
+            const timeDifference = targetDate - currentDate;
+
+            // Calcula os dias, horas, minutos e segundos restantes
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            // Exibe o tempo restante no formato desejado
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // Verifica se o evento já ocorreu
+            if (timeDifference < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = 'Evento encerrado!';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
