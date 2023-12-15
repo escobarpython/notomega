@@ -1,58 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SINTA</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-family: Helvetica
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÔMEGA Trailer de Revelação</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: black;
+      color: red;
+      font-family: Arial, sans-serif;
+    }
 
-        #countdown {
-            font-size: 2em;
-            margin-top: 20px;
-        }
-    </style>
+    #countdown {
+      font-size: 4em;
+    }
+
+    #message {
+      color: gray;
+      font-size: 1.5em;
+      display: none;
+    }
+
+    #emailForm {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #emailInput {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    #submitButton {
+      padding: 10px;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <img src="https://i.ibb.co/60y43TN/NOTOMEGA.png" alt="wait to see">
-
+  <div>
+    <p>Ótimo. Tudo certo. Mas, não era o que você esperava, certo?</p>
     <div id="countdown"></div>
+    <p> "ÔMEGA" TRAILER DE REVELAÇÃO</p>
+    <p>Junte-se a nós</p>
+    <div id="emailForm">
+      <input type="email" id="emailInput" placeholder="Sua melhor forma de comunicação">
+      <button id="submitButton" onclick="submitEmail()">QUERO ME JUNTAR</button>
+    </div>
+    <div id="message">CONCLUÍDO.</div>
+    <p><b></b>2023; sintoniarj.com</b></p>
+  </div>
 
-    <script>
-        // Define a data e hora do evento (15 de dezembro às 19h)
-        const targetDate = new Date('December 15, 2023 19:00:00').getTime();
+  <script>
+    // Defina a data alvo (20 de dezembro)
+    const targetDate = new Date('2023-12-20T00:00:00').getTime();
 
-        // Atualiza o cronômetro a cada segundo
-        const countdownInterval = setInterval(function() {
-            const currentDate = new Date().getTime();
-            const timeDifference = targetDate - currentDate;
+    // Atualiza o cronômetro a cada segundo
+    const countdownElement = document.getElementById('countdown');
+    setInterval(() => {
+      const currentDate = new Date().getTime();
+      const timeRemaining = targetDate - currentDate;
 
-            // Calcula os dias, horas, minutos e segundos restantes
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            // Exibe o tempo restante no formato desejado
-            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
 
-            // Verifica se o evento já ocorreu
-            if (timeDifference < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('countdown').innerHTML = 'Evento encerrado!';
-            }
-        }, 1000);
-    </script>
+    // Função chamada ao enviar o e-mail
+    function submitEmail() {
+      // Aqui você pode adicionar a lógica para enviar o e-mail
+      // e exibir a mensagem de conclusão
+      const messageElement = document.getElementById('message');
+      messageElement.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
